@@ -416,32 +416,37 @@ namespace LuaSTGEditorSharp.EditorData
                     entry2File.Add(Path.GetFileName(rootLuaPath), rootLuaPath);
                 }
                 entry2File.Add(Path.GetFileName(projLuaPath), projLuaPath);
-                if (currentApp.SaveResMeta)
+                if (currentApp.PackResources)
                 {
-                    foreach (KeyValuePair<string, string> resPath in resNeedToPack)
+                    if (currentApp.SaveResMeta)
                     {
-                        entry2File.Add(resPath.Key, resPath.Value);
-                    }
-                    foreach (KeyValuePair<string, Tuple<string, string>> kvp in resPathToMD5)
-                    {
-                        entry2File.Add(kvp.Key, kvp.Value.Item1);
-                    }
-                }
-                else
-                {
-                    //if (File.Exists(targetZipPath)) File.Delete(targetZipPath);
-                    foreach (KeyValuePair<string, string> resPath in resourceFilePath)
-                    {
-                        bool? undcPath = RelativePathConverter.IsRelativePath(resPath.Value);
-                        if (undcPath == true)
-                        {
-                            if (string.IsNullOrEmpty(projPath)) throw new InvalidRelativeResPathException(resPath.Value);
-                            temp = Path.GetFullPath(Path.Combine(projPath, resPath.Value));
-                            entry2File.Add(resPath.Key, temp);
-                        }
-                        else if (undcPath == false)
+                        foreach (KeyValuePair<string, string> resPath in resNeedToPack)
                         {
                             entry2File.Add(resPath.Key, resPath.Value);
+                        }
+
+                        foreach (KeyValuePair<string, Tuple<string, string>> kvp in resPathToMD5)
+                        {
+                            entry2File.Add(kvp.Key, kvp.Value.Item1);
+                        }
+                    }
+                    else
+                    {
+                        //if (File.Exists(targetZipPath)) File.Delete(targetZipPath);
+                        foreach (KeyValuePair<string, string> resPath in resourceFilePath)
+                        {
+                            bool? undcPath = RelativePathConverter.IsRelativePath(resPath.Value);
+                            if (undcPath == true)
+                            {
+                                if (string.IsNullOrEmpty(projPath))
+                                    throw new InvalidRelativeResPathException(resPath.Value);
+                                temp = Path.GetFullPath(Path.Combine(projPath, resPath.Value));
+                                entry2File.Add(resPath.Key, temp);
+                            }
+                            else if (undcPath == false)
+                            {
+                                entry2File.Add(resPath.Key, resPath.Value);
+                            }
                         }
                     }
                 }

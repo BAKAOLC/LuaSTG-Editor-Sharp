@@ -52,6 +52,8 @@
                               IsChecked="{Binding DebugSaveProj, ElementName=window}"/>
                     <CheckBox Content="Pack project" HorizontalAlignment="Left" Height="26" Margin="10,281,0,0" VerticalAlignment="Top" Width="205" 
                               IsChecked="{Binding PackProj, ElementName=window}"/>
+                    <CheckBox Content="Pack Resources" HorizontalAlignment="Left" Height="26" Margin="300,281,0,0" VerticalAlignment="Top" Width="205" 
+                              IsChecked="{Binding PackResources, ElementName=window}"/>
                     <CheckBox Content="Use MD5 resource check in packing" HorizontalAlignment="Left" Height="26" Margin="10,312,0,0" VerticalAlignment="Top" Width="250" 
                               IsChecked="{Binding MD5Check, ElementName=window}"/>
                 </Grid>

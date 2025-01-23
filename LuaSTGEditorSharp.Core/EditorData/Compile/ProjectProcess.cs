@@ -51,20 +51,27 @@ namespace LuaSTGEditorSharp.EditorData.Compile
             Dictionary<string, string> resNeedToPack = new Dictionary<string, string>();
             Dictionary<string, Tuple<string, string>> resPathToMD5 = new Dictionary<string, Tuple<string, string>>();
 
-            if (appSettings.SaveResMeta)
+            if (appSettings.PackResources)
             {
-                if (File.Exists(projMetaPath) && Packer.TargetExists())
+                if (appSettings.SaveResMeta)
                 {
-                    GatherResByResMeta(resNeedToPack, resPathToMD5);
+                    if (File.Exists(projMetaPath) && Packer.TargetExists())
+                    {
+                        GatherResByResMeta(resNeedToPack, resPathToMD5);
+                    }
+                    else
+                    {
+                        GatherResAndSaveMeta(resNeedToPack);
+                    }
                 }
                 else
                 {
-                    GatherResAndSaveMeta(resNeedToPack);
+                    GatherAllRes(resNeedToPack);
                 }
             }
             else
             {
-                GatherAllRes(resNeedToPack);
+                if (File.Exists(projMetaPath)) File.Delete(projMetaPath);
             }
 
             PackFileUsingInfo(appSettings, resNeedToPack, resPathToMD5, true);

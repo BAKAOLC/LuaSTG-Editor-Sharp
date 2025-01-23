@@ -238,6 +238,15 @@ namespace LuaSTGEditorSharp
             }
         }
 
+        public bool PackResources
+        {
+            get => Settings.Default.PackResources;
+            set
+            {
+                Settings.Default["PackResources"] = value;
+            }
+        }
+
         public bool SaveResMeta
         {
             get => Settings.Default.SaveResMeta;

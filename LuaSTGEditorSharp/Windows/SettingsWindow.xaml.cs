@@ -187,6 +187,16 @@ namespace LuaSTGEditorSharp.Windows
                 RaiseProertyChanged("PackProj");
             }
         }
+        private bool packResources;
+        public bool PackResources
+        {
+            get => packResources;
+            set
+            {
+                packResources = value;
+                RaiseProertyChanged("PackResources");
+            }
+        }
 
         private bool autoMoveToNew;
         public bool AutoMoveToNew
@@ -382,6 +392,12 @@ namespace LuaSTGEditorSharp.Windows
             set => mainApp.PackProj = value;
         }
 
+        public bool PackResourcesSettings
+        {
+            get => mainApp.PackResources;
+            set => mainApp.PackResources = value;
+        }
+
         public bool AutoMoveToNewSettings
         {
             get => mainApp.AutoMoveToNew;
@@ -467,6 +483,7 @@ namespace LuaSTGEditorSharp.Windows
             LuaSTGExecutablePathSettings = LuaSTGExecutablePath;
             MD5CheckSettings = MD5Check;
             PackProjSettings = PackProj;
+            PackResourcesSettings = PackResources;
             PluginPathSettings = PluginPath;
             TempPathSettings = TempPath;
             ZipExecutablePathSettings = ZipExecutablePath;
@@ -500,6 +517,7 @@ namespace LuaSTGEditorSharp.Windows
             LuaSTGExecutablePath = LuaSTGExecutablePathSettings;
             MD5Check = MD5CheckSettings;
             PackProj = PackProjSettings;
+            PackResources = PackResourcesSettings;
             PluginPath = PluginPathSettings;
             TempPath = TempPathSettings;
             ZipExecutablePath = ZipExecutablePathSettings;

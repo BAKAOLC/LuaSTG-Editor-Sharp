@@ -169,6 +169,7 @@ namespace LuaSTGEditorSharp.Core.Cli
             public string SLDir { get; set; } = string.Empty;
             public bool SaveResMeta { get; } = false;
             public bool PackProj { get; } = true;
+            public bool PackResources { get; } = true;
             public string PackerType { get; } = "zip-internal-quick";
             public bool SpaceIndentation { get; } = true;
             public int IndentationSpaceLength { get; } = 0;
